@@ -13,6 +13,7 @@ public class MainController {
     public void initPage() {
 
         loginForm = new LoginForm();
+        loginForm.setVisible(true);
 
     }
 
