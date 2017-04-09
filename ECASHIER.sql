@@ -1,0 +1,346 @@
+-- MySQL dump 10.15  Distrib 10.0.29-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: localhost
+-- ------------------------------------------------------
+-- Server version	10.0.29-MariaDB-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `CONTACT`
+--
+
+DROP TABLE IF EXISTS `CONTACT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONTACT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SUPPLIER_ID` int(11) DEFAULT NULL,
+  `CONTACT` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `SUPPLIER_ID` (`SUPPLIER_ID`),
+  CONSTRAINT `CONTACT_ibfk_1` FOREIGN KEY (`SUPPLIER_ID`) REFERENCES `SUPPLIER` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CONTACT`
+--
+
+LOCK TABLES `CONTACT` WRITE;
+/*!40000 ALTER TABLE `CONTACT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CONTACT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ITEM`
+--
+
+DROP TABLE IF EXISTS `ITEM`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ITEM` (
+  `ID` int(11) NOT NULL DEFAULT '0',
+  `NAME` varchar(255) DEFAULT NULL,
+  `UNIT_ID` int(11) DEFAULT NULL,
+  `CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATED_BY` int(11) DEFAULT '0',
+  `UPDATED_AT` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `UPDATED_BY` int(11) DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `UNIT_ID` (`UNIT_ID`),
+  KEY `CREATED_BY` (`CREATED_BY`),
+  KEY `UPDATED_BY` (`UPDATED_BY`),
+  CONSTRAINT `ITEM_ibfk_1` FOREIGN KEY (`UNIT_ID`) REFERENCES `UNIT` (`ID`),
+  CONSTRAINT `ITEM_ibfk_2` FOREIGN KEY (`CREATED_BY`) REFERENCES `LOGIN` (`ID`),
+  CONSTRAINT `ITEM_ibfk_3` FOREIGN KEY (`UPDATED_BY`) REFERENCES `LOGIN` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ITEM`
+--
+
+LOCK TABLES `ITEM` WRITE;
+/*!40000 ALTER TABLE `ITEM` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ITEM` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LOG`
+--
+
+DROP TABLE IF EXISTS `LOG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LOG` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) DEFAULT '0',
+  `LOGIN_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LOGOUT_AT` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LOG`
+--
+
+LOCK TABLES `LOG` WRITE;
+/*!40000 ALTER TABLE `LOG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LOG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LOGIN`
+--
+
+DROP TABLE IF EXISTS `LOGIN`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LOGIN` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(50) NOT NULL DEFAULT '',
+  `NAME` varchar(255) DEFAULT NULL,
+  `PASSWORD` varchar(50) DEFAULT NULL,
+  `LEVEL` tinyint(4) DEFAULT NULL,
+  `IS_DELETED` tinyint(4) DEFAULT '0',
+  `CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATED_BY` int(11) DEFAULT '0',
+  `UDPATED_AT` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `UPDATED_BY` int(11) DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `CONSTR_USERNAME` (`USERNAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LOGIN`
+--
+
+LOCK TABLES `LOGIN` WRITE;
+/*!40000 ALTER TABLE `LOGIN` DISABLE KEYS */;
+INSERT INTO `LOGIN` VALUES (3,'admin','TOKO BAHAGIA','#1rstwap',1,0,'2017-04-05 18:47:47',1,'0000-00-00 00:00:00',0);
+/*!40000 ALTER TABLE `LOGIN` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PRICE`
+--
+
+DROP TABLE IF EXISTS `PRICE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PRICE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ITEM_ID` int(11) DEFAULT NULL,
+  `QUANTITY_AT` int(11) DEFAULT NULL,
+  `PRICE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ITEM_ID` (`ITEM_ID`),
+  CONSTRAINT `PRICE_ibfk_1` FOREIGN KEY (`ITEM_ID`) REFERENCES `ITEM` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PRICE`
+--
+
+LOCK TABLES `PRICE` WRITE;
+/*!40000 ALTER TABLE `PRICE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PRICE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `REPORT`
+--
+
+DROP TABLE IF EXISTS `REPORT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `REPORT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `START_DATE` date DEFAULT NULL,
+  `END_DATE` date DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `REPORT`
+--
+
+LOCK TABLES `REPORT` WRITE;
+/*!40000 ALTER TABLE `REPORT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `REPORT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `STOCK`
+--
+
+DROP TABLE IF EXISTS `STOCK`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STOCK` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ITEM_ID` int(11) DEFAULT NULL,
+  `QUANTITY_AT` int(11) DEFAULT NULL,
+  `SUPPLIED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `SUPPLIED_BY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ITEM_ID` (`ITEM_ID`),
+  KEY `SUPPLIED_BY` (`SUPPLIED_BY`),
+  CONSTRAINT `STOCK_ibfk_1` FOREIGN KEY (`ITEM_ID`) REFERENCES `ITEM` (`ID`),
+  CONSTRAINT `STOCK_ibfk_2` FOREIGN KEY (`SUPPLIED_BY`) REFERENCES `SUPPLIER` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `STOCK`
+--
+
+LOCK TABLES `STOCK` WRITE;
+/*!40000 ALTER TABLE `STOCK` DISABLE KEYS */;
+/*!40000 ALTER TABLE `STOCK` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SUPPLIER`
+--
+
+DROP TABLE IF EXISTS `SUPPLIER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SUPPLIER` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `ADDRESS` varchar(255) DEFAULT NULL,
+  `CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATED_BY` int(11) DEFAULT NULL,
+  `UPDATED_AT` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `UPDATED_BY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `CREATED_BY` (`CREATED_BY`),
+  KEY `UPDATED_BY` (`UPDATED_BY`),
+  CONSTRAINT `SUPPLIER_ibfk_1` FOREIGN KEY (`CREATED_BY`) REFERENCES `LOGIN` (`ID`),
+  CONSTRAINT `SUPPLIER_ibfk_2` FOREIGN KEY (`UPDATED_BY`) REFERENCES `LOGIN` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SUPPLIER`
+--
+
+LOCK TABLES `SUPPLIER` WRITE;
+/*!40000 ALTER TABLE `SUPPLIER` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SUPPLIER` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TRX`
+--
+
+DROP TABLE IF EXISTS `TRX`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TRX` (
+  `ID` int(11) NOT NULL DEFAULT '0',
+  `TOTAL` int(11) DEFAULT NULL,
+  `AMOUNT_DUE` int(11) DEFAULT NULL,
+  `NOTE` varchar(255) DEFAULT NULL,
+  `IS_CANCEL` tinyint(1) DEFAULT '0',
+  `CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CREATED_BY` int(11) DEFAULT NULL,
+  `UPDATED_AT` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `UPDATED_BY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `CREATED_BY` (`CREATED_BY`),
+  KEY `UPDATED_BY` (`UPDATED_BY`),
+  CONSTRAINT `TRX_ibfk_1` FOREIGN KEY (`CREATED_BY`) REFERENCES `LOGIN` (`ID`),
+  CONSTRAINT `TRX_ibfk_2` FOREIGN KEY (`UPDATED_BY`) REFERENCES `LOGIN` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TRX`
+--
+
+LOCK TABLES `TRX` WRITE;
+/*!40000 ALTER TABLE `TRX` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TRX` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TRX_DETAILED`
+--
+
+DROP TABLE IF EXISTS `TRX_DETAILED`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TRX_DETAILED` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TRX_ID` int(11) DEFAULT NULL,
+  `ITEM_ID` int(11) DEFAULT NULL,
+  `QUANTITY_AT` int(11) DEFAULT NULL,
+  `TOTAL` int(11) DEFAULT NULL,
+  `IS_CANCEL` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `TRX_ID` (`TRX_ID`),
+  KEY `ITEM_ID` (`ITEM_ID`),
+  CONSTRAINT `TRX_DETAILED_ibfk_1` FOREIGN KEY (`TRX_ID`) REFERENCES `TRX` (`ID`),
+  CONSTRAINT `TRX_DETAILED_ibfk_2` FOREIGN KEY (`ITEM_ID`) REFERENCES `ITEM` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TRX_DETAILED`
+--
+
+LOCK TABLES `TRX_DETAILED` WRITE;
+/*!40000 ALTER TABLE `TRX_DETAILED` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TRX_DETAILED` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UNIT`
+--
+
+DROP TABLE IF EXISTS `UNIT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UNIT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UNIT`
+--
+
+LOCK TABLES `UNIT` WRITE;
+/*!40000 ALTER TABLE `UNIT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `UNIT` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-04-06  1:55:02
