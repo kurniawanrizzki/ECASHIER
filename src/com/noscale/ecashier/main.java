@@ -4,7 +4,6 @@ import com.noscale.ecashier.controllers.MainController;
 import com.noscale.ecashier.models.Login;
 import com.noscale.ecashier.utilities.SampleData;
 import com.noscale.ecashier.utilities.connector.ECashierDB;
-
 import java.sql.SQLException;
 
 /**
@@ -12,7 +11,7 @@ import java.sql.SQLException;
  */
 public class main {
 
-    private MainController mainController;
+    private static MainController mainController;
 
     public static void main(String[] args) {
 
@@ -20,15 +19,14 @@ public class main {
 
             ECashierDB eCashierDB = new ECashierDB();
             eCashierDB.open();
+            
+            mainController = new MainController();
+            mainController.initPage();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-    }
-
-    private void initData() {
-        mainController = new MainController();
     }
 
     public MainController getMainController() {
