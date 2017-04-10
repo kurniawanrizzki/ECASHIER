@@ -5,6 +5,9 @@
  */
 package com.noscale.ecashier.views.login;
 
+import com.noscale.ecashier.controllers.LoginController;
+import com.noscale.ecashier.controllers.MainController;
+import com.noscale.ecashier.utilities.Global;
 import java.awt.Color;
 
 /**
@@ -13,11 +16,15 @@ import java.awt.Color;
  */
 public class LoginForm extends javax.swing.JFrame {
 
+    private MainController main;
+    private LoginController controller;
     /**
      * Creates new form LoginForm
      */
-    public LoginForm() {
+    public LoginForm(MainController main) {
         initComponents();
+        this.main = main;
+        controller = new LoginController();
         overlayPanel.setBackground(new Color(0,0,0,200));
     }
 
@@ -100,6 +107,11 @@ public class LoginForm extends javax.swing.JFrame {
                 loginButtonFocusGained(evt);
             }
         });
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         jPanel3.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 270, 30));
 
         passwordTxt.setBackground(new java.awt.Color(255, 255, 255));
@@ -166,39 +178,13 @@ public class LoginForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loginButtonFocusGained
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        main.showPage(Global.HOME_PAGE, null);
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForm().setVisible(true);
-            }
-        });
+    public LoginController getController() {
+        return controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

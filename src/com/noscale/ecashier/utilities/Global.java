@@ -12,6 +12,7 @@ public class Global {
     public static final String ORDER_BY_DESC = "DESC";
     public static final String ORDER_BY_ASC = "ASC";
 
+    public static final int HOME_PAGE = -1;
     public static final int LOGIN_PAGE = 0;
     public static final int REGISTER_PAGE = 1;
     public static final int SINGLE_USER_PAGE = 2;

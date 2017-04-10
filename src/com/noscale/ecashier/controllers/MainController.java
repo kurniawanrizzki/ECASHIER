@@ -1,6 +1,8 @@
 package com.noscale.ecashier.controllers;
 
+import com.noscale.ecashier.Main;
 import com.noscale.ecashier.utilities.Global;
+import com.noscale.ecashier.views.MainForm;
 import com.noscale.ecashier.views.login.LoginForm;
 
 /**
@@ -9,12 +11,15 @@ import com.noscale.ecashier.views.login.LoginForm;
 public class MainController {
 
     private LoginForm loginForm;
+    private MainForm mainForm;
+    
+    public MainController() {
+        initPage();
+    }
 
-    public void initPage() {
-
-        loginForm = new LoginForm();
-        loginForm.setVisible(true);
-
+    private void initPage() {
+        loginForm = new LoginForm(this);
+        mainForm = new MainForm(this);
     }
 
     /**
@@ -27,6 +32,8 @@ public class MainController {
         switch (pageIndex) {
 
             case Global.LOGIN_PAGE :
+                loginForm.setVisible(true);
+                mainForm.setVisible(false);
                 break;
 
             case Global.REGISTER_PAGE :
@@ -62,7 +69,10 @@ public class MainController {
             case Global.TRANSACTION_FORM_PAGE :
                 break;
 
-            default: break;
+            default: 
+                mainForm.setVisible(true);
+                loginForm.setVisible(false);
+                break;
 
         }
 
@@ -70,6 +80,10 @@ public class MainController {
 
     public LoginForm getLoginForm() {
         return loginForm;
+    }
+    
+    public MainForm getMainForm() {
+        return mainForm;
     }
 
 }
