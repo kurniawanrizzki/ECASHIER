@@ -1,17 +1,13 @@
 package com.noscale.ecashier;
 
-import com.noscale.ecashier.controllers.MainController;
-import com.noscale.ecashier.models.Login;
-import com.noscale.ecashier.utilities.SampleData;
+import com.noscale.ecashier.controllers.LoginController;
 import com.noscale.ecashier.utilities.connector.ECashierDB;
 import java.sql.SQLException;
 
 /**
  * Created by kurniawanrizzki on 24/03/17.
  */
-public class main {
-
-    private static MainController mainController;
+public class Main {
 
     public static void main(String[] args) {
 
@@ -20,17 +16,13 @@ public class main {
             ECashierDB eCashierDB = new ECashierDB();
             eCashierDB.open();
             
-            mainController = new MainController();
-            mainController.initPage();
+            LoginController controller = new LoginController();
+            controller.showPage();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-    }
-
-    public MainController getMainController() {
-        return mainController;
     }
 
 }

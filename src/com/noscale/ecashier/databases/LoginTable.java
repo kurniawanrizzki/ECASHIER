@@ -1,6 +1,6 @@
 package com.noscale.ecashier.databases;
 
-import com.noscale.ecashier.models.Login;
+import com.noscale.ecashier.models.User;
 import com.noscale.ecashier.utilities.TrippleDES;
 import com.noscale.ecashier.utilities.connector.Database;
 
@@ -62,7 +62,7 @@ public class LoginTable extends Database {
 
         PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        Login login = (Login) object;
+        User login = (User) object;
 
         statement.setString(1, login.getUsername());
         statement.setString(2, login.getName());
@@ -80,9 +80,9 @@ public class LoginTable extends Database {
      * @param password password account
      * @return #Login
      */
-    public Login getAuthenticateUser(String username, String password) {
+    public User getAuthenticateUser(String username, String password) {
 
-        Login account = null;
+        User account = null;
         String encryptedPass = TrippleDES.getInstance().encrypt(password);
 
         String query = buildSelectQuery(
@@ -102,7 +102,7 @@ public class LoginTable extends Database {
 
             set.first();
 
-            account = new Login();
+            account = new User();
             account.setId(set.getInt(1));
             account.setUsername(set.getString(2));
             account.setPassword(set.getString(3));

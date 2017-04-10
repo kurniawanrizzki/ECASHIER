@@ -3,7 +3,7 @@ package com.noscale.ecashier.models;
 /**
  * Created by rizkikurniawan on 06/04/17.
  */
-public class Login {
+public class User {
 
     private int id, level, createdBy, createdAt, updatedBy ,updatedAt;
     private String username, name, password;

@@ -1,6 +1,6 @@
 package com.noscale.ecashier.utilities;
 
-import com.noscale.ecashier.models.Login;
+import com.noscale.ecashier.models.User;
 
 /**
  * Created by rizkikurniawan on 06/04/17.
@@ -18,9 +18,9 @@ public class SampleData {
         return instance;
     }
 
-    public Login getDummyLoginPerson() {
+    public User getDummyLoginPerson() {
 
-        Login loginPerson = new Login();
+        User loginPerson = new User();
         loginPerson.setUsername("admin");
         loginPerson.setName("TOKO BAHAGIA");
         loginPerson.setPassword(TrippleDES.getInstance().encrypt("#1rstwap"));

@@ -1,5 +1,7 @@
 package com.noscale.ecashier.utilities;
 
+import java.awt.Color;
+
 /**
  * Created by kurniawanrizzki on 24/03/17.
  */
@@ -12,21 +14,21 @@ public class Global {
     public static final String ORDER_BY_DESC = "DESC";
     public static final String ORDER_BY_ASC = "ASC";
 
-    public static final int LOGIN_PAGE = 0;
-    public static final int REGISTER_PAGE = 1;
-    public static final int SINGLE_USER_PAGE = 2;
-    public static final int MANAGE_USER_PAGE = 3;
-    public static final int LOGIN_FORM_PAGE = 4;
-    public static final int LOG_PAGE = 5;
-
-    public static final int ITEM_PAGE = 6;
-    public static final int ITEM_FORM_PAGE = 7;
-
-    public static final int SUPPLIER_PAGE = 8;
-    public static final int SUPPLIER_FORM_PAGE = 9;
-
-    public static final int TRANSACTION_PAGE = 10;
-    public static final int TRANSACTION_FORM_PAGE = 11;
-
-
+    public static final Color BLUE_APP = new Color(57,113,200);
+    public static final Color WHITE = new Color(255,255,255);
+    public static final Color BLACK_BRIGHT = new Color(51,52,54);
+    public static final Color TRANSPARENT = new Color(0,0,0,200);
+    
+    public static final String MAIN_PANEL = "MAIN_PANEL";
+    public static final String PRODUCT_SMALL_PANEL = "PRODUCT_SMALL_PANEL";
+    public static final String PRODUCT_BIG_PANEL = "PRODUCT_BIG_PANEL";
+    public static final String SELL_SMALL_PANEL = "SELL_SMALL_PANEL";
+    public static final String SELL_BIG_PANEL = "SELL_BIG_PANEL";
+    public static final String SUPPLIER_SMALL_PANEL = "SUPPLIER_SMALL_PANEL";
+    public static final String SUPPLIER_BIG_PANEL = "SUPPLIER_BIG_PANEL";
+    public static final String REPORT_SMALL_PANEL = "REPORT_SMALL_PANEL";
+    public static final String REPORT_BIG_PANEL = "REPORT_BIG_PANEL";
+    public static final String TITLE_PANEL = "TITLE_PANEL";
+    public static final String FOOTER_PANEL = "FOOTER_PANEL";
+   
 }
