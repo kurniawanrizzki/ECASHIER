@@ -95,7 +95,7 @@ public class MainForm extends javax.swing.JFrame {
         titleApp.setForeground(new java.awt.Color(255, 255, 255));
         titleApp.setText("ECashier");
 
-        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/noscale/ecashier/assets/Circled User Male Filled-50.png"))); // NOI18N
+        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/noscale/ecashier/assets/Circled_User_Male_Filled-50.png"))); // NOI18N
         userIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         userIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -154,7 +154,7 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().add(footerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 710, 130));
 
         bodyPanel.setBackground(new java.awt.Color(57, 113, 147));
-        bodyPanel.setLayout(new java.awt.GridLayout());
+        bodyPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         productParentPanel.setBackground(new java.awt.Color(57, 113, 147));
 
@@ -176,7 +176,7 @@ public class MainForm extends javax.swing.JFrame {
         productBigPanel.setBackground(new java.awt.Color(57, 113, 200));
         productBigPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        productBigIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/noscale/ecashier/assets/Product-100(2).png"))); // NOI18N
+        productBigIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/noscale/ecashier/assets/Product-100_2.png"))); // NOI18N
         productBigPanel.add(productBigIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         productBigLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -467,44 +467,11 @@ public class MainForm extends javax.swing.JFrame {
 
     private void userIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIconMouseClicked
         // TODO add your handling code here:
-        main.showPage(Global.LOGIN_PAGE, null);
+        main.getLoginForm().getController().logout();
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_userIconMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;

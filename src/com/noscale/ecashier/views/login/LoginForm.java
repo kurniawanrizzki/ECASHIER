@@ -6,9 +6,11 @@
 package com.noscale.ecashier.views.login;
 
 import com.noscale.ecashier.controllers.LoginController;
-import com.noscale.ecashier.controllers.MainController;
-import com.noscale.ecashier.utilities.Global;
 import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,16 +18,31 @@ import java.awt.Color;
  */
 public class LoginForm extends javax.swing.JFrame {
 
-    private MainController main;
     private LoginController controller;
+    
+    private Color brightBlue;
+    private Color white;
+    private Color darkBlack;
+    private Color transparent;
+    
     /**
      * Creates new form LoginForm
      */
-    public LoginForm(MainController main) {
+    public LoginForm() {
         initComponents();
-        this.main = main;
-        controller = new LoginController();
-        overlayPanel.setBackground(new Color(0,0,0,200));
+        initColors();
+        
+        controller = new LoginController(this);
+        overlayPanel.setBackground(transparent);
+    }
+    
+    private void initColors() {
+        
+        brightBlue = new Color(57,113,177);
+        white = new Color(255,255,255);
+        darkBlack = new Color(51,52,54);
+        transparent = new Color(0,0,0,200);
+        
     }
 
     /**
@@ -138,25 +155,16 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void passwordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFieldFocusGained
         // TODO add your handling code here:
-        passwordSeparator.setBackground(new Color(57,113,177));
-        passwordTxt.setForeground(new Color(57,113,177));
-        usernameField.setForeground(new Color(57,113,177));
         
-        usernameSeparator.setBackground(new Color(255,255,255));
-        usernameTxt.setForeground(new Color(51,52,54));
-        usernameField.setForeground(new Color(51,52,54));
+        controller.paintPasswordField(brightBlue, brightBlue);
+        controller.paintUsernameField(darkBlack, white);
 
     }//GEN-LAST:event_passwordFieldFocusGained
 
     private void usernameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusGained
         // TODO add your handling code here:
-        usernameSeparator.setBackground(new Color(57,113,177));
-        usernameTxt.setForeground(new Color(57,113,177));
-        usernameField.setForeground(new Color(57,113,177));
-        
-        passwordSeparator.setBackground(new Color(255,255,255));
-        passwordTxt.setForeground(new Color(51,52,54));
-        passwordField.setForeground(new Color(51,52,54));
+        controller.paintPasswordField(darkBlack, white);
+        controller.paintUsernameField(brightBlue, brightBlue);
         
     }//GEN-LAST:event_usernameFieldFocusGained
 
@@ -168,23 +176,42 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void loginButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginButtonFocusGained
         // TODO add your handling code here:
-        passwordSeparator.setBackground(new Color(255,255,255));
-        passwordTxt.setForeground(new Color(51,52,54));
-        passwordField.setForeground(new Color(51,52,54));
-        
-        usernameSeparator.setBackground(new Color(255,255,255));
-        usernameTxt.setForeground(new Color(51,52,54));
-        usernameField.setForeground(new Color(51,52,54));
-        
+        controller.paintPasswordField(darkBlack, white);
+        controller.paintUsernameField(darkBlack, white);
     }//GEN-LAST:event_loginButtonFocusGained
-
+    
+    
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        main.showPage(Global.HOME_PAGE, null);
+        setVisible(true);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     public LoginController getController() {
         return controller;
+    }
+    
+    public JTextField getUsernaField() {
+        return usernameField;
+    }
+    
+    public JLabel getUsernameTxt() {
+        return usernameTxt;
+    }
+    
+    public JSeparator getUsernameSeparator() {
+        return usernameSeparator;
+    }
+    
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+    
+    public JLabel getPasswordTxt() {
+        return passwordTxt;
+    }
+    
+    public JSeparator getPasswordSeparator() {
+        return passwordSeparator;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
